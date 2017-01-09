@@ -18,6 +18,11 @@ Please go through the documentation for using the boiler plate, especially the e
 * Clone repo and install application libraries
     $ npm install --save 
     
+## Instructions
+* Prior to commits/ pull-requests, please format the code. 
+On Windows, code formatting is available in VSCode through the shortcut `Shift + Alt + F`.
+On Ubuntu, it's `Ctrl + Shift + i`.
+    
 ## Testing (This section will be removed/edited -- Only for first time setup)
 * Create a database in your localhost, using RoboMongo. Default databse is mentioned as "test" under /lib/database/index.js.
 * Create a collection in MongoDB with 'users'.
