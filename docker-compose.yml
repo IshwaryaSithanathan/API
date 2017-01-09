@@ -1,0 +1,8 @@
+app:
+  build: .
+  volumes:
+    - .:/opt/application
+    - /opt/application/node_modules
+  ports:
+   - "3000"
+  command: bin/start.sh
