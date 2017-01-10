@@ -26,8 +26,8 @@ On Ubuntu, it's `Ctrl + Shift + i`.
 ## Testing (This section will be removed/edited -- Only for first time setup)
 * Create a database in your localhost, using RoboMongo. Default databse is mentioned as "test" under /lib/database/index.js.
 * Create a collection in MongoDB with 'users' and 'tokens'.
-* In the users collection, insert a new document with ```name=your-name```. Once inserted, save the _id value of the generated user.
-* Go to the default location of the cloned repo and enter, ```npm run dev```. The application by default will run in port 3000.
+* In the users collection, insert a new document with ```name=your-name``` and ```email=email-address```. Once inserted, save the _id value of the generated user.
+* Go to the default location of the cloned repo and enter, ```npm run dev```. For windows, hit the run button on the VS code IDE. The application by default will run in port 3000.
 * From the Postman google chrome app, enter the url as http://localhost:3000/api/getToken, header-key="userid", header-value="<_id value>" and submit.
 * You should get a 200 OK message followed by, token id. 
 * Open the tokens collection in the DB, read the value of the token. The value will be the api key for testing. Default validity is set to 30 days.
