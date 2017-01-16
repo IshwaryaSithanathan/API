@@ -1,0 +1,82 @@
+<!--!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{{siteTitle}}</title>
+
+  <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" media="all" rel="stylesheet" />
+  <link href="/css/app.css" media="all" rel="stylesheet" />
+</head>
+
+<body lang="en">
+
+  <header id="layout-marker">
+    Layout Loaded
+  </header>
+
+  <div id="canvas" class="container">
+        {{{body}}}
+  </div>
+
+</body>
+
+<script src="/js/ios-orientationchange-fix.js"></script>
+<script src="/bower_components/jquery/jquery.min.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</html>-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" href="/css/bootstrap.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+	<div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            {{#if user}}
+            <!--  <li role="presentation"><a href="/">Dashboard</a></li>-->
+              <li role="presentation"><a href="/users/logout">Logout</a></li>
+            {{else}}
+             <!-- <li role="presentation"><a href="/users/login">Login</a></li>-->
+          
+            {{/if}}
+          </ul>
+        </nav>
+      <!--  <h3 class="text-muted">Login</h3>-->
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-12">
+          {{#if success_msg}}
+            <div class="alert alert-success">{{success_msg}}</div>
+          {{/if}}
+            {{#if failure_msg}}
+            <div class="alert alert-danger">{{failure_msg}}</div>
+          {{/if}}
+
+          {{#if error_msg}}
+            <div class="alert alert-danger">{{error_msg}}</div>
+          {{/if}}
+
+          {{#if error}}
+            <div class="alert alert-danger">{{error}}</div>
+          {{/if}}
+          
+          {{{body}}}
+        </div>
+
+        
+      </div>
+
+
+    </div> <!-- /container -->
+</body>
+</html>
