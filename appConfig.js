@@ -11,7 +11,7 @@ exports.setup = function(runningApp, callback) {
     runningApp.engine('handlebars', require('hbs').__express);
 
     // Initialize Passport
-    require('passport/authenticate')(passport);
+    require('passport/index')(passport);
     runningApp.use(passport.initialize());
 
     // Setup Mongoose
