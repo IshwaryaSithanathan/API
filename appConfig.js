@@ -3,7 +3,7 @@ require('app-module-path').addPath(__dirname + '/lib')
 exports.setup = function (runningApp, callback) {
   var mongoose = require('mongoose')
   var passport = require('passport')
-  var configDB = require('database')
+  var database = require('database')
 
   runningApp.disable('x-powered-by')
   runningApp.set('view engine', 'handlebars')
@@ -15,7 +15,7 @@ exports.setup = function (runningApp, callback) {
 
     // Setup Mongoose
   mongoose.Promise = global.Promise
-  mongoose.connect(configDB.url)
+  mongoose.connect(database.url)
 
     // Setup TCP communication with PrintQueue
   var communicatorRoute = require('communicator')
