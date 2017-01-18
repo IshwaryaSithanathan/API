@@ -7,4 +7,5 @@ var server = require('nodebootstrap-server')
     
 app = require('nodebootstrap-htmlapp').setup(app);
 app.use(bodyParser.urlencoded({extended: false}));
+
 server.setup(app, appConfig.setup);
