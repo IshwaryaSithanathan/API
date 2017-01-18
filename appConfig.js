@@ -30,10 +30,12 @@ exports.setup = function (runningApp, callback) {
   // *** Load routes ***
   var versionRoute = require('version')(passport)
   var apiRoute = require('api')(passport)
+  var jobsRoute = require('jobs')(passport)
 
   // *** Assign routes ***
   runningApp.use('/version', versionRoute)
   runningApp.use('/api', apiRoute)
+  runningApp.use('/jobs', jobsRoute)
 
   if (typeof callback === 'function') {
     callback(runningApp)
