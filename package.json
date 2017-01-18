@@ -60,7 +60,6 @@
     "logs": "docker-compose logs",
     "logs-tail": "docker-compose logs -f",
     "test": "mocha --bail test/ test/acceptance/",
-    "pretest": "jshint lib test",
     "test-cov": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- --reporter dot test/ test/acceptance/",
     "test-travis": "istanbul cover _mocha --report lcovonly -- test/ test/acceptance/"
   }

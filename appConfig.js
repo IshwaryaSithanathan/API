@@ -7,15 +7,11 @@ exports.setup = function (runningApp, callback) {
   var configDB = require('database');
   var path = require('path');
   var exphbs = require('express-handlebars');
-  var expressValidator = require('express-validator');
   var flash = require('connect-flash');
   var session = require('express-session');
   var passport = require('passport');
-  var LocalStrategy = require('passport-local').Strategy;
+// var login = require('./lib/login/index.js');
 
-
-  var index = require('./lib/login/index.js');
- // var users = require('./lib/login/controllers/users');
 
   // View Engine
   runningApp.disable("x-powered-by");
@@ -35,18 +31,19 @@ exports.setup = function (runningApp, callback) {
 
   // Initialize Passport
   require('passport/authenticate')(passport);
+  require('passport/login')(passport);
   runningApp.use(passport.initialize());
-  runningApp.use(passport.session());
+  runningApp.use(passport.session()); 
 
   // Setup Mongoose
   mongoose.Promise = global.Promise;
-  mongoose.connect(configDB.url);
+  mongoose.createConnection(configDB.url);
 
   // Connect Flash
   runningApp.use(flash());
 
   // Global Vars
-  runningApp.use(function (req, res, next) {
+    runningApp.use(function (req, res, next) {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
@@ -59,14 +56,11 @@ exports.setup = function (runningApp, callback) {
   var versionRoute = require('version')(passport);
   var apiRoute = require('api')(passport);
 
-
   // Assign routes
   runningApp.use('/version', versionRoute);
   runningApp.use('/api', apiRoute);
-  //runningApp.use('', require('login'));
+ runningApp.use('/', require('login'));
 
- // runningApp.use('', index);
-  runningApp.use('/', index);
 
 
   //Define tcp comms
