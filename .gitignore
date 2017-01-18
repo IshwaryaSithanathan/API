@@ -6,6 +6,9 @@ nbproject
 public/bower_components
 config/runtime.json
 
+### Application files
+lib/database/index.js
+
 ### Node template
 # Logs
 logs
