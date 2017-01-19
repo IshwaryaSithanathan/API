@@ -9,23 +9,29 @@ exports.setup = function (runningApp, callback) {
   runningApp.set('view engine', 'handlebars')
   runningApp.engine('handlebars', require('hbs').__express)
 
-    // Initialize Passport
-  require('passport/authenticate')(passport)
+  // *** Initialize Passport ***
+  require('passport/index')(passport)
   runningApp.use(passport.initialize())
 
-    // Setup Mongoose
+  // *** Setup Mongoose ***
+  // Creates a single DB connection, application unable to connect if set to createconnection.
+  // Mocha tests are failing without createconnection. Definitely not the best fix, can revisit this.
   mongoose.Promise = global.Promise
-  mongoose.connect(database.url)
+  try {
+    mongoose.connect(database.url)
+  } catch (err) {
+    mongoose.createConnection(database.url)
+  }
 
-    // Setup TCP communication with PrintQueue
+  // *** Setup TCP communication with PrintQueue ***
   var communicatorRoute = require('communicator')
   communicatorRoute.openConnection()
 
-    // Load routes
+  // *** Load routes ***
   var versionRoute = require('version')(passport)
   var apiRoute = require('api')(passport)
 
-    // Assign routes
+  // *** Assign routes ***
   runningApp.use('/version', versionRoute)
   runningApp.use('/api', apiRoute)
 
