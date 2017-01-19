@@ -34,7 +34,7 @@
     "os": "*",
     "enum": "*",
     "randomstring": "*",
-    "path" : "*",
+    "path" : "*"
   },
   "devDependencies": {
     "after": "^0.8.1",
