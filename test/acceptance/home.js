@@ -3,7 +3,8 @@ var request = require('supertest')
 var server = require('../support/server')
 
 describe('home document', function () {
-  var app
+  var app = null
+
   beforeEach(function (done) {
     app = server.express()
     server.beforeEach(app, function () {

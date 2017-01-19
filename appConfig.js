@@ -1,4 +1,4 @@
-require('app-module-path').addPath(__dirname + '/lib')
+require('app-module-path').addPath(require('path').join(__dirname, '/lib'))
 
 exports.setup = function (runningApp, callback) {
   var mongoose = require('mongoose')

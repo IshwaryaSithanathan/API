@@ -33,7 +33,8 @@
     "yaml": "*",
     "os": "*",
     "enum": "*",
-    "randomstring": "*"
+    "randomstring": "*",
+    "path" : "*",
   },
   "devDependencies": {
     "after": "^0.8.1",
@@ -63,6 +64,6 @@
     "logs-tail": "docker-compose logs -f",
     "test": "mocha --bail test/acceptance/",
     "test-cov": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- --reporter dot test/acceptance/",
-    "test-travis": "istanbul cover _mocha --report lcovonly -- version/"
+    "test-travis": "istanbul cover _mocha --report lcovonly --test/acceptance/"
   }
 }
