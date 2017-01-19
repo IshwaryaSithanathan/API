@@ -8,10 +8,16 @@ exports.setup = function(runningApp, callback) {
     var session = require('express-session');
     var exphbs = require('express-handlebars');
     var path = require('path');
-
     runningApp.disable("x-powered-by");
     runningApp.set('view engine', 'handlebars');
     runningApp.engine('handlebars', exphbs({ defaultLayout: 'layout' }));
+
+    // Express Session
+    runningApp.use(session({
+        secret: 'secret',
+        saveUninitialized: true,
+        resave: true
+    }));
 
     // Set Static Folder
     runningApp.use(require('express').static(path.join(__dirname, 'public')));
@@ -20,13 +26,6 @@ exports.setup = function(runningApp, callback) {
     require('passport/index')(passport);
     runningApp.use(passport.initialize());
     runningApp.use(passport.session());
-
-    // Express Session
-    runningApp.use(session({
-        secret: 'secret',
-        saveUninitialized: true,
-        resave: true
-    }));
 
     // Connect Flash
     runningApp.use(flash());
