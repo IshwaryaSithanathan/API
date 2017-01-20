@@ -1,4 +1,5 @@
-require('app-module-path').addPath(__dirname + '/lib')
+require('app-module-path').addPath(require('path').join(__dirname, '/lib'))
+
 
 exports.setup = function (runningApp, callback) {
   var mongoose = require('mongoose')
@@ -23,6 +24,7 @@ exports.setup = function (runningApp, callback) {
     // Set Static Folder
   runningApp.use(require('express').static(path.join(__dirname, 'public')))
 
+
     // Initialize Passport
   require('passport/index')(passport)
   runningApp.use(passport.initialize())
@@ -40,6 +42,7 @@ exports.setup = function (runningApp, callback) {
     next()
   })
 
+
     // Setup Mongoose
   mongoose.Promise = global.Promise
   mongoose.connect(configDB.url)
@@ -48,6 +51,7 @@ exports.setup = function (runningApp, callback) {
   var versionRoute = require('version')(passport)
   var apiRoute = require('api')(passport)
   var loginRoute = require('login')(passport)
+
 
     // Assign routes
   runningApp.use('/version', versionRoute)
