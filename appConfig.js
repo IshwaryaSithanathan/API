@@ -4,16 +4,12 @@ require('app-module-path').addPath(require('path').join(__dirname, '/lib'))
 exports.setup = function (runningApp, callback) {
   var mongoose = require('mongoose')
   var passport = require('passport')
-<<<<<<< HEAD
-  var configDB = require('database')
   var flash = require('connect-flash')
   var session = require('express-session')
   var exphbs = require('express-handlebars')
   var path = require('path')
-=======
   var database = require('database')
->>>>>>> e09142dc85b3d366da8936a675eacf33b20a3b91
-
+ 
   runningApp.disable('x-powered-by')
   runningApp.set('view engine', 'handlebars')
   runningApp.engine('handlebars', exphbs({ defaultLayout: 'layout' }))
