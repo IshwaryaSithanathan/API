@@ -24,8 +24,7 @@ exports.setup = function (runningApp, callback) {
   }
 
   // *** Setup TCP communication with PrintQueue ***
-  var communicatorRoute = require('communicator')
-  communicatorRoute.openConnection()
+  require('communicator').openConnection()
 
   // *** Load routes ***
   var versionRoute = require('version')(passport)
