@@ -4,11 +4,15 @@ require('app-module-path').addPath(require('path').join(__dirname, '/lib'))
 exports.setup = function (runningApp, callback) {
   var mongoose = require('mongoose')
   var passport = require('passport')
+<<<<<<< HEAD
   var configDB = require('database')
   var flash = require('connect-flash')
   var session = require('express-session')
   var exphbs = require('express-handlebars')
   var path = require('path')
+=======
+  var database = require('database')
+>>>>>>> e09142dc85b3d366da8936a675eacf33b20a3b91
 
   runningApp.disable('x-powered-by')
   runningApp.set('view engine', 'handlebars')
@@ -25,7 +29,7 @@ exports.setup = function (runningApp, callback) {
   runningApp.use(require('express').static(path.join(__dirname, 'public')))
 
 
-    // Initialize Passport
+  // *** Initialize Passport ***
   require('passport/index')(passport)
   runningApp.use(passport.initialize())
   runningApp.use(passport.session())
@@ -43,24 +47,29 @@ exports.setup = function (runningApp, callback) {
   })
 
 
-    // Setup Mongoose
+  // *** Setup Mongoose ***
+  // Creates a single DB connection, application unable to connect if set to createconnection.
+  // Mocha tests are failing without createconnection. Definitely not the best fix, can revisit this.
   mongoose.Promise = global.Promise
-  mongoose.connect(configDB.url)
+  try {
+    mongoose.connect(database.url)
+  } catch (err) {
+    mongoose.createConnection(database.url)
+  }
 
-    // Load routes
+  // *** Setup TCP communication with PrintQueue ***
+  require('communicator').openConnection()
+
+  // *** Load routes ***
   var versionRoute = require('version')(passport)
   var apiRoute = require('api')(passport)
   var loginRoute = require('login')(passport)
 
 
-    // Assign routes
+  // *** Assign routes ***
   runningApp.use('/version', versionRoute)
   runningApp.use('/api', apiRoute)
   runningApp.use('/', loginRoute)
-
-// Define tcp comms
-  var client = require('communicator/client')
-  client.openConnection()
 
   if (typeof callback === 'function') {
     callback(runningApp)

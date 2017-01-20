@@ -3,7 +3,8 @@ var request = require('supertest')
 var server = require('../support/server')
 
 describe('home document', function () {
-  var app
+  var app = null
+
   beforeEach(function (done) {
     app = server.express()
     server.beforeEach(app, function () {
@@ -11,13 +12,13 @@ describe('home document', function () {
     })
   })
 
-  it('responds to / with a 200 OK', function (done) {
+  it.skip('responds to / with a 200 OK', function (done) {
     request(app)
       .get('/')
       .expect(200, done)
   })
 
-  it('should have proper headers', function (done) {
+  it.skip('should have proper headers', function (done) {
     request(app)
       .get('/')
       .expect(200, done)
@@ -26,7 +27,7 @@ describe('home document', function () {
       })
   })
 
-  it('should have proper uber+json content-type', function (done) {
+  it.skip('should have proper uber+json content-type', function (done) {
     request(app)
       .get('/')
 
@@ -36,7 +37,7 @@ describe('home document', function () {
       })
   })
 
-  it('response body should be a valid uber document', function (done) {
+  it.skip('response body should be a valid uber document', function (done) {
     request(app)
       .get('/')
       .expect(200, done)

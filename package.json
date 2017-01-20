@@ -27,32 +27,26 @@
     "nodebootstrap-htmlapp": "*",
     "nodebootstrap-server": "*",
     "passport": "~0.2.1",
-
-    "passport-http-bearer": "^1.0.1",
-    "passport-local": "~1.0.0",
     "passport-localapikey-update": "0.5.0",
     "promises": "^0.2.5",
     "rand-token": "^0.2.1",
     "readline-sync": "^1.4.5",
-    "yaml": "*"
-
-    "mongoose": "latest"
     "yaml": "*",
-    "rand-token": "^0.2.1",
-    "passport-localapikey-update": "0.5.0",
-    "path" : "*",
-    "moment" : "*"
-
+    "os": "*",
+    "enum": "*",
+    "randomstring": "*",
+    "path" : "*"
   },
   "devDependencies": {
     "after": "^0.8.1",
-    "istanbul": "^0.4.2",
-    "mocha": "^3.0.0",
     "chai": "^3.5.0",
-    "should": "^11.0.0",
+    "istanbul": "^0.4.2",
     "jshint": "^2.5.x",
+    "mocha": "^3.0.0",
     "nock": "^9.0.0",
+    "should": "^11.0.0",
     "sinon": "^1.17.3",
+    "standard": "^8.6.0",
     "supertest": "^2.0.0"
   },
   "scripts": {
@@ -69,8 +63,8 @@
     "docker-test-cov": "docker-compose run app npm run test-cov",
     "logs": "docker-compose logs",
     "logs-tail": "docker-compose logs -f",
-    "test": "mocha --bail test/ test/acceptance/",
-    "test-cov": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- --reporter dot test/ test/acceptance/",
-    "test-travis": "istanbul cover _mocha --report lcovonly -- test/ test/acceptance/"
+    "test": "mocha --bail test/acceptance/",
+    "test-cov": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- --reporter dot test/acceptance/",
+    "test-travis": "istanbul cover _mocha --report lcovonly --test/acceptance/"
   }
 }
