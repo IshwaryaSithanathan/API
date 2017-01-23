@@ -14,6 +14,7 @@
   "dependencies": {
     "app-module-path": "^2.1.0",
     "body-parser": "latest",
+    "bower": "^1.8.0",
     "config": "*",
     "connect-flash": "^0.1.1",
     "consolidate": "^0.14.0",
