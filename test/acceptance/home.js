@@ -1,6 +1,8 @@
 var request = require('supertest')
 
 var server = require('../support/server')
+var chai = require('chai')
+
 
 describe('home document', function () {
   var app = null
@@ -12,13 +14,13 @@ describe('home document', function () {
     })
   })
 
-  it.skip('responds to / with a 200 OK', function (done) {
+  it('responds to / with a 200 OK', function (done) {
     request(app)
       .get('/')
       .expect(200, done)
   })
 
-  it.skip('should have proper headers', function (done) {
+  it('should have proper headers', function (done) {
     request(app)
       .get('/')
       .expect(200, done)
@@ -27,24 +29,35 @@ describe('home document', function () {
       })
   })
 
-  it.skip('should have proper uber+json content-type', function (done) {
-    request(app)
-      .get('/')
-
-      .expect(200, done)
-      .expect(function (res) {
-        res.headers['content-type'].should.equal('application/vnd.uber+json; charset=utf-8')
-      })
-  })
-
-  it.skip('response body should be a valid uber document', function (done) {
+  it('should have proper text/html content-type', function (done) {
     request(app)
       .get('/')
       .expect(200, done)
       .expect(function (res) {
-        res.body.should.have.properties(['uber'])
-        res.body.uber.should.have.properties(['data'])
+        res.headers['content-type'].should.equal('text/html; charset=utf-8')
       })
   })
+
+  it('response body should be empty', function (done) {
+    var expect = chai.expect
+    request(app)
+      .get('/')
+      .expect(200, done)
+      .expect(function (res) {
+        expect(res.body).to.be.empty
+        expect(res.text).to.be.a('string')
+      })
+  })
+
+  it('response body should be a HTML string', function (done) {
+    var expect = chai.expect
+    request(app)
+      .get('/')
+      .expect(200, done)
+      .expect(function (res) {
+        expect(res.text).to.be.a('string')
+      })
+  })
+
 })
 
