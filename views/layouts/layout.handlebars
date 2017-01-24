@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8"/>
+ <meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <title>{{siteTitle}}</title>
+	<link rel="stylesheet" href="/css/bootstrap.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+ <div class="container">
+   <div class="header clearfix">
+     <nav>
+       <ul class="nav nav-pills pull-right">
+       </ul>
+     </nav>
+   </div>
+   <div class="row">
+     <div class="col-lg-12">
+       {{#if success_msg}}
+       <div class="alert alert-success">{{success_msg}}</div>
+       {{/if}} {{#if failure_msg}}
+       <div class="alert alert-danger">{{failure_msg}}</div>
+       {{/if}} {{#if error}}
+       <div class="alert alert-danger">{{error}}</div>
+       {{/if}} {{{body}}}
+     </div>
+   </div>
+ </div>
+
+</html>
