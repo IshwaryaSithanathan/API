@@ -1,6 +1,5 @@
 require('app-module-path').addPath(require('path').join(__dirname, '/lib'))
 
-
 exports.setup = function (runningApp, callback) {
   var mongoose = require('mongoose')
   var passport = require('passport')
@@ -9,31 +8,29 @@ exports.setup = function (runningApp, callback) {
   var exphbs = require('express-handlebars')
   var path = require('path')
   var database = require('database')
- 
   runningApp.disable('x-powered-by')
   runningApp.set('view engine', 'handlebars')
   runningApp.engine('handlebars', exphbs({ defaultLayout: 'layout' }))
 
-    // Express Session
+  // *** Express Session ***
   runningApp.use(session({
     secret: 'secret',
     saveUninitialized: true,
     resave: true
   }))
 
-    // Set Static Folder
+  // *** Set Static Folder ***
   runningApp.use(require('express').static(path.join(__dirname, 'public')))
-
 
   // *** Initialize Passport ***
   require('passport/index')(passport)
   runningApp.use(passport.initialize())
   runningApp.use(passport.session())
 
-    // Connect Flash
+  // *** Connect Flash ***
   runningApp.use(flash())
 
-    // Global Vars
+  // *** Global Vars ***
   runningApp.use(function (req, res, next) {
     res.locals.success_msg = req.flash('success_msg')
     res.locals.error_msg = req.flash('error_msg')
@@ -41,7 +38,6 @@ exports.setup = function (runningApp, callback) {
     res.locals.user = req.user || null
     next()
   })
-
 
   // *** Setup Mongoose ***
   // Creates a single DB connection, application unable to connect if set to createconnection.
@@ -60,7 +56,6 @@ exports.setup = function (runningApp, callback) {
   var versionRoute = require('version')(passport)
   var apiRoute = require('api')(passport)
   var loginRoute = require('login')(passport)
-
 
   // *** Assign routes ***
   runningApp.use('/version', versionRoute)
