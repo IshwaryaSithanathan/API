@@ -42,7 +42,9 @@
     "rand-token": "^0.2.1",
     "randomstring": "*",
     "readline-sync": "^1.4.5",
-    "yaml": "*"
+    "yaml": "*",
+    "chromedriver":"2.27.2",
+    "selenium-webdriver":"3.0.1"
   },
   "devDependencies": {
     "after": "^0.8.1",
@@ -71,6 +73,7 @@
     "logs": "docker-compose logs",
     "logs-tail": "docker-compose logs -f",
     "test": "mocha --bail test/acceptance/",
+    "seleniumTest": "mocha  test/selenium/",
     "test-cov": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- --reporter dot test/acceptance/",
     "test-travis": "istanbul cover _mocha --report lcovonly --test/acceptance/"
   }
