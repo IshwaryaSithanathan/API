@@ -1,4 +1,4 @@
-# Structo-Api
+# Api
 NODEJS application to communicate with PrintQueue through http calls. This project is started out with [nodebootstrap](http://nodebootstrap.io/). 
 Please go through the documentation for using the boiler plate, especially the encapsulated modules section.
 
